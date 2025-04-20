@@ -51,7 +51,7 @@ const LeaveModal = ({ isOpen, onClose, onSuccess }) => {
   const fetchEmployees = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('getApiUrl('api/employees')', {
+      const response = await axios.get(getApiUrl('api/employees'), {
         headers: {
           Authorization: `Bearer ${token}`
         }

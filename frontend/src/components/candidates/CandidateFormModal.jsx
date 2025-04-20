@@ -73,7 +73,7 @@ const CandidateFormModal = ({ isOpen, onClose, onSuccess }) => {
       form.append('status', 'New');
 
       // Make the API request
-      const response = await axios.post('getApiUrl('api/candidates')', form, {
+      const response = await axios.post(getApiUrl('api/candidates'), form, {
         headers: {
           Authorization: `Bearer ${token}`,
           // Don't manually set Content-Type for FormData, axios will set it with the correct boundary
