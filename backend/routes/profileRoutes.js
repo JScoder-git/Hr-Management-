@@ -6,7 +6,9 @@ const {
   getProfilePicture
 } = require('../controllers/profileController');
 const { protect } = require('../middleware/auth');
-const { uploadProfile } = require('../middleware/upload');
+
+// Use Vercel-friendly upload middleware
+const { uploadProfile } = require('../middleware/vercel-upload');
 
 const router = express.Router();
 

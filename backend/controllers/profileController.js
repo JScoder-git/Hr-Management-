@@ -36,18 +36,18 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const { fullName, phoneNumber, jobTitle } = req.body;
-    
+
     // Build update object with allowable fields
     const updateData = {};
     if (fullName) updateData.fullName = fullName;
     if (phoneNumber) updateData.phoneNumber = phoneNumber;
     if (jobTitle) updateData.jobTitle = jobTitle;
-    
+
     // If profile picture was uploaded
     if (req.file) {
       // Find current user to get current profile picture
       const currentUser = await User.findById(req.user.id);
-      
+
       // Delete old profile picture if it's not the default
       if (currentUser.profilePicture && currentUser.profilePicture !== 'default-avatar.jpg') {
         const oldPicturePath = path.join(__dirname, '..', 'uploads', 'profiles', currentUser.profilePicture);
@@ -55,11 +55,11 @@ exports.updateProfile = async (req, res) => {
           fs.unlinkSync(oldPicturePath);
         }
       }
-      
+
       // Set new profile picture path
       updateData.profilePicture = req.file.filename;
     }
-    
+
     // Update user
     const user = await User.findByIdAndUpdate(
       req.user.id,
@@ -69,14 +69,14 @@ exports.updateProfile = async (req, res) => {
         runValidators: true
       }
     ).select('-password');
-    
+
     if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found'
       });
     }
-    
+
     res.status(200).json({
       success: true,
       data: user
@@ -96,7 +96,7 @@ exports.updateProfile = async (req, res) => {
 exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
-    
+
     // Validate request
     if (!currentPassword || !newPassword) {
       return res.status(400).json({
@@ -104,7 +104,7 @@ exports.changePassword = async (req, res) => {
         message: 'Please provide current and new password'
       });
     }
-    
+
     // Check if new password meets requirements
     if (newPassword.length < 6) {
       return res.status(400).json({
@@ -112,31 +112,31 @@ exports.changePassword = async (req, res) => {
         message: 'New password must be at least 6 characters'
       });
     }
-    
+
     // Get user with password
     const user = await User.findById(req.user.id).select('+password');
-    
+
     if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found'
       });
     }
-    
+
     // Check if current password is correct
     const isMatch = await user.matchPassword(currentPassword);
-    
+
     if (!isMatch) {
       return res.status(401).json({
         success: false,
         message: 'Current password is incorrect'
       });
     }
-    
+
     // Update password
     user.password = newPassword;
     await user.save();
-    
+
     res.status(200).json({
       success: true,
       message: 'Password updated successfully'
@@ -155,16 +155,12 @@ exports.changePassword = async (req, res) => {
 // @access  Public
 exports.getProfilePicture = (req, res) => {
   try {
-    const filename = req.params.filename;
-    const picturePath = path.join(__dirname, '..', 'uploads', 'profiles', filename);
-    
-    // Check if file exists
-    if (!fs.existsSync(picturePath)) {
-      // Return default avatar
-      return res.sendFile(path.join(__dirname, '..', 'uploads', 'profiles', 'default-avatar.jpg'));
-    }
-    
-    res.sendFile(picturePath);
+    // For Vercel deployment, we'll return a placeholder image URL
+    // In a production environment, you would use a cloud storage service like S3
+    const defaultAvatarUrl = 'https://via.placeholder.com/150';
+
+    // Redirect to the placeholder image
+    return res.redirect(defaultAvatarUrl);
   } catch (error) {
     res.status(500).json({
       success: false,

@@ -9,7 +9,9 @@ const {
   convertToEmployee
 } = require('../controllers/candidateController');
 const { protect } = require('../middleware/auth');
-const { uploadResume } = require('../middleware/upload');
+
+// Use Vercel-friendly upload middleware
+const { uploadResume } = require('../middleware/vercel-upload');
 
 const router = express.Router();
 

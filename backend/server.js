@@ -11,7 +11,9 @@ let dbConnected = false;
 const initDB = async () => {
   dbConnected = await connectDB();
 };
-initDB();
+
+// For Vercel, we'll connect to the database on each request
+// instead of at server startup
 
 const app = express();
 app.use(express.json());
@@ -19,7 +21,17 @@ app.use(cors({
   origin: '*', // Allow all origins in production
   credentials: true
 }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// In Vercel, we can't use static file serving for uploads
+// We'll need to handle file access differently
+
+// Connect to database on each request
+app.use(async (req, res, next) => {
+  if (!dbConnected) {
+    dbConnected = await initDB();
+  }
+  next();
+});
 
 // Health check endpoint
 app.get('/', (req, res) => {
