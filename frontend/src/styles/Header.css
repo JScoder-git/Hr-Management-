@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px;
+  background-color: #FFFFFF; /* White */
+  border-bottom: 1px solid #F0F0F0; /* Light Grey */
+}
+
+/* Header left styling */
+.header-left {
+  flex: 1;
+}
+
+.header-left.page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000000; /* Black */
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header right styling */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 0.5rem;
+  flex: 0 1 400px;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  padding: 0.5rem;
+  width: 100%;
+  outline: none;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Notifications styling */
+.notification-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notification-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff3b30;
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+/* User profile styling */
+.user-profile-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.user-name {
+  margin: 0;
+  font-weight: 600;
+  color: #000000; /* Black */
+  font-size: 0.875rem;
+}
+
+.user-role {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #A9A9A9; /* Dark Grey */
+  text-transform: capitalize;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: none;
+}
+
+.dropdown-arrow-container {
+  color: #000000; /* Black */
+
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #FFFFFF; /* White */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Show dropdown when the show class is applied */
+.user-dropdown.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+/* This hover behavior is no longer needed */
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #F0F0F0; /* Light Grey */
+  margin: 0.5rem 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #000000; /* Black */
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background-color: #F0F0F0;
+  color: #4B0082; 
+}

@@ -1,0 +1,210 @@
+.leave-detail-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.leave-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.leave-detail-header h1 {
+  font-size: 1.75rem;
+  color: #1e40af;
+  margin: 0;
+}
+
+.leave-detail-header > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #f3f4f6;
+}
+
+.detail-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-section h2 {
+  font-size: 1.25rem;
+  color: #1e40af;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #111827;
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-green {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.badge-red {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-yellow {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.comment-box label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.comment-box textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.comment-box textarea:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.approve-button,
+.reject-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.2s;
+  border: none;
+}
+
+.approve-button {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.reject-button {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.approve-button:hover,
+.reject-button:hover {
+  opacity: 0.8;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #eff6ff;
+  color: #3b82f6;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.download-btn:hover {
+  opacity: 0.8;
+}
+
+.comment {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 4px;
+  color: #374151;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}

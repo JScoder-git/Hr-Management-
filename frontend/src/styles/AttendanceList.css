@@ -1,0 +1,467 @@
+.attendance-page {
+  padding: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.attendance-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Header section with filters */
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Status dropdown at top left */
+.status-dropdown {
+  position: relative;
+}
+
+.status-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 25px;
+  background-color: white;
+  font-size: 0.875rem;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+/* Search box at top right */
+.search-box {
+  position: relative;
+  width: 250px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4B0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+/* Table styling */
+.attendance-table-container {
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table thead {
+  background-color: #4B0082; /* Deep purple header like in the image */
+  color: #fff;
+}
+
+.attendance-table th{
+  background-color: #4B0082;
+    color: #FFFFFF;
+    padding: 1.2rem 1rem;
+    text-align: left;
+    font-weight: normal;
+}
+.attendance-table td {
+
+  text-align: left;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.attendance-table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.attendance-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Profile images */
+.employee-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.employee-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Status buttons in the table */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  min-width: 100px;
+  cursor: pointer;
+  position: relative;
+  padding-right: 24px; /* Space for the dropdown arrow */
+}
+
+/* Present status button */
+.status-pill.present {
+  background-color: transparent;
+  border: 1px solid #16a34a;
+  color: #16a34a;
+}
+
+/* Absent status button */
+.status-pill.absent {
+  background-color: transparent;
+  border: 1px solid #dc2626;
+  color: #dc2626;
+}
+
+/* Status dropdown arrow */
+.status-pill::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid currentColor;
+}
+
+/* Action column three dots menu */
+.action-cell {
+  position: relative;
+}
+
+.action-wrapper {
+  position: relative;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action menu */
+.action-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+.action-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 7px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  transform: rotate(45deg);
+  border-left: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.menu-item {
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  color: #333;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #4B0082;
+  font-weight: 500;
+  font-size: 1.1rem;
+  background-color: #f9f5ff;
+  border-radius: 8px;
+  margin-top: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  margin: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.no-records {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.task-edit {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.task-input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+.save-task-btn {
+  padding: 6px 12px;
+  background-color: #4B0082;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-task-btn:hover {
+  background-color: #3a006c;
+}
+
+.loading, .no-employees {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.attendance-list-wrapper {
+  padding: 20px;
+}
+
+.attendance-list-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 12px;
+}
+
+/* Filter Dropdown */
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+}
+
+.filter-button:focus {
+  outline: none;
+  border-color: #4B0082;
+}
+
+/* Status Dropdown */
+.status-dropdown-container {
+  position: relative;
+}
+
+.status-dropdown-container .status-dropdown {
+  padding: 8px 16px;
+  border: 1px solid;
+  border-radius: 50px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  min-width: 120px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 30px;
+  text-align: center;
+}
+
+.status-dropdown:focus {
+  outline: none;
+}
+
+.status-dropdown.present {
+  color: #10b981;
+ 
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.status-dropdown.absent {
+  color: #ef4444;
+ 
+  border-color: rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+.status-dropdown.half-day {
+  color: #f59e0b;
+  
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.status-dropdown.wfh {
+  color: #3b82f6;
+  
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.status-dropdown.not-set {
+  color: #6b7280;
+  
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Task Display */
+.task-display {
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  border: 1px dashed transparent;
+  transition: all 0.2s;
+}
+
+.task-display:hover {
+  background-color: #f5f5f5;
+  border-color: #d1d5db;
+}
+
+/* Improved Date Filter styling */
+.date-filter {
+  position: relative;
+  display: inline-flex;
+}
+
+.date-filter input {
+  padding: 8px 16px;
+  border: 1px solid #4B0082;
+  border-radius: 25px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 150px;
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 35px;
+}
+
+.date-filter input:hover {
+  border-color: #9ca3af;
+}
+
+.date-filter input:focus {
+  outline: none;
+  border-color: #4B0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+/* Make the calendar icon part of the native date input look better */
+::-webkit-calendar-picker-indicator {
+  opacity: 0; /* Hide the default calendar icon */
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  height: 100%;
+  width: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .attendance-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}

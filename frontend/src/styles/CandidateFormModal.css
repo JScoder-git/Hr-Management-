@@ -1,0 +1,188 @@
+.candidate-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Increased from 20px to 24px */
+}
+
+.form-row {
+  display: flex;
+  gap: 24px; /* Increased from 16px to 24px */
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.candidate-modal-form .form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #4b0082; /* Purple border */
+  border-radius: 4px; /* Consistent border-radius */
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  height: 48px; /* Fixed height for consistency */
+}
+
+
+.form-group input:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Form control styling */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #4b0082; /* Purple border */
+  border-radius: 4px; /* Consistent border-radius */
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  height: 48px; /* Fixed height for consistency */
+}
+
+.form-control:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+.form-control::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Resume upload styling */
+.resume-input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.resume-text {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  padding-right: 40px; /* Add space for the upload icon */
+  border: 1px solid #4b0082; /* Purple border */
+  border-radius: 4px; /* Match consistent border-radius with other inputs */
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  height: 48px; /* Fixed height for consistency */
+  cursor: pointer;
+  background-color: white;
+  color: #333;
+}
+
+.resume-text::placeholder {
+  color: #666;
+  font-size: 14px;
+}
+
+.resume-text:focus {
+  border-color: #4b0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+.upload-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4b0082;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3; /* Increased z-index to ensure visibility */
+  pointer-events: none; /* Allow clicks to pass through to the file input */
+}
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 48px;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Declaration styling */
+.declaration-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.declaration-label {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: #999; /* Lighter gray text */
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+.declaration-label input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: #4b0082; /* Purple color for checkbox */
+  width: 16px;
+  height: 16px;
+}
+
+.declaration-label span {
+  flex: 1;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Button styling */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.form-actions .save-button {
+  background-color: #4B0082; /* Light gray background */
+  color: #ffffff;
+  font-size: 14px;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  min-width: 120px;
+  transition: background-color 0.3s;
+}
+
+.save-button:hover {
+  background-color: #d0d0d0; /* Slightly darker gray on hover */
+}
+
+.save-button:disabled {
+  background-color: #f0f0f0; /* Lighter gray when disabled */
+  color: #999;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}

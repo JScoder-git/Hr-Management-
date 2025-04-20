@@ -1,0 +1,223 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Container */
+.employee-edit-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 1050px;
+ 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: visible; /* Changed from hidden to visible */
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  background-color: #4B0082;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Styles */
+.employee-edit-modal form {
+  padding: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+  position: relative;
+  overflow: visible; /* Ensure dropdowns aren't cut off */
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #4B0082;
+  margin-bottom: 8px;
+  position: relative;
+  font-weight: 500;
+}
+
+.form-row .form-group label::after {
+  content: "*";
+  color: #4B0082;
+  margin-left: 2px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #4B0082;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #333;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4B0082;
+  box-shadow: 0 0 0 2px rgba(75, 0, 130, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+/* Position Dropdown */
+.position-input-container {
+  position: relative;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4B0082;
+  cursor: pointer;
+}
+
+.position-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  overflow: visible; /* Changed from auto to visible */
+  margin-top: 4px;
+  display: block;
+}
+
+.position-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+  font-size: 14px;
+  display: block;
+}
+
+.position-option:hover {
+  background-color: #f5f0ff;
+}
+
+.position-option.selected {
+  color: #4B0082;
+  font-weight: 500;
+}
+
+/* Date Input */
+.date-input-container {
+  position: relative;
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4B0082;
+  cursor: pointer;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.save-button {
+  background-color: #4B0082;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(75, 0, 130, 0.2);
+}
+
+.save-button:hover {
+  background-color: #3a006b;
+}
+
+.save-button:disabled {
+  background-color: #9c7fb3;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 0 24px;
+  font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

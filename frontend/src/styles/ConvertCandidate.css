@@ -1,0 +1,169 @@
+.convert-candidate-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.convert-candidate-container h1 {
+  font-size: 1.75rem;
+  color: #1e40af;
+  margin-bottom: 2rem;
+}
+
+.convert-candidate-container h2 {
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.candidate-info {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.employee-form-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.3);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancel-button,
+.convert-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.convert-button {
+  background-color: #1e40af;
+  color: white;
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #e5e7eb;
+}
+
+.convert-button:hover {
+  background-color: #1e3a8a;
+}
+
+.convert-button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.badge-new {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.badge-shortlisted {
+  background-color: #f3e8ff;
+  color: #9333ea;
+}
+
+.badge-interview {
+  background-color: #fff7ed;
+  color: #ea580c;
+}
+
+.badge-selected {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.badge-rejected {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}

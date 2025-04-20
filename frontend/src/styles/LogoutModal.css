@@ -1,0 +1,88 @@
+.logout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.logout-modal-container {
+  background-color: #FFFFFF; /* White */
+  border-radius: 8px;
+  width: 1100px;
+  max-width: 90%;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logout-modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #4B0082; /* Violet */
+  color: #FFFFFF; /* White */
+  border-radius: 8px 8px 0 0;
+}
+
+.logout-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.logout-modal-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.logout-message {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #000000; /* Black */
+}
+
+.logout-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cancel-button-logout {
+  padding: 8px 24px;
+  background-color: #4B0082; /* Violet */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  min-width: 100px;
+}
+
+.cancel-button-logout:hover {
+  background-color: #3a006b; /* Darker Violet */
+}
+
+.logout-button {
+  padding: 8px 24px;
+  background-color: #FFFFFF; /* White */
+  color: #C00000; /* Red */
+  border: 1px solid #C00000; /* Red */
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  min-width: 100px;
+}
+
+.logout-button:hover {
+  background-color: #F0F0F0; /* Light Grey */
+}

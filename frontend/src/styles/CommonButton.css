@@ -1,0 +1,161 @@
+/* Common Button Styles using the provided color scheme */
+
+/* Primary Button - Violet */
+.btn-primary {
+  background-color: #4B0082; /* Violet */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #3a006b; /* Darker Violet */
+}
+
+.btn-primary:disabled {
+  background-color: #A9A9A9; /* Dark Grey */
+  cursor: not-allowed;
+}
+
+/* Secondary Button - White with Violet border */
+.btn-secondary {
+  background-color: #FFFFFF; /* White */
+  color: #4B0082; /* Violet */
+  border: 1px solid #4B0082; /* Violet */
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #F0F0F0; /* Light Grey */
+}
+
+.btn-secondary:disabled {
+  color: #A9A9A9; /* Dark Grey */
+  border-color: #A9A9A9; /* Dark Grey */
+  cursor: not-allowed;
+}
+
+/* Success Button - Green */
+.btn-success {
+  background-color: #008000; /* Green */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+  background-color: #006400; /* Darker Green */
+}
+
+/* Danger Button - Red */
+.btn-danger {
+  background-color: #C00000; /* Red */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #900000; /* Darker Red */
+}
+
+/* Warning Button - Yellow */
+.btn-warning {
+  background-color: #FFC000; /* Yellow */
+  color: #000000; /* Black */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-warning:hover {
+  background-color: #E6B000; /* Darker Yellow */
+}
+
+/* Light Button - Light Grey */
+.btn-light {
+  background-color: #F0F0F0; /* Light Grey */
+  color: #000000; /* Black */
+  border: 1px solid #A9A9A9; /* Dark Grey */
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-light:hover {
+  background-color: #E0E0E0; /* Slightly darker grey */
+}
+
+/* Dark Button - Black */
+.btn-dark {
+  background-color: #000000; /* Black */
+  color: #FFFFFF; /* White */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-dark:hover {
+  background-color: #333333; /* Slightly lighter black */
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 4px 12px;
+  font-size: 12px;
+}
+
+.btn-lg {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+/* Icon Button */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Rounded Button */
+.btn-rounded {
+  border-radius: 50px;
+}
+
+/* Full Width Button */
+.btn-block {
+  display: block;
+  width: 100%;
+}

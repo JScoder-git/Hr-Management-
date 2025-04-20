@@ -1,0 +1,166 @@
+/* Sidebar.css */
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #FFFFFF; /* White */
+  border-right: 1px solid #F0F0F0; /* Light Grey */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
+/* Logo styling */
+.logo-container {
+  padding-left: 13px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.company-name {
+  color: #3C0073; 
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.company-tagline {
+  color: #3C0073; 
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Search styling */
+.search-container {
+  padding: 8px 16px 16px 16px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.search-icon-sidebar {
+  position: absolute;
+  left: 24px;
+  top: 43%;
+  transform: translateY(-50%);
+  color: #A9A9A9; /* Dark Grey */
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input-sidebar {
+  width: 70%;
+  height: 36px;
+  padding: 0 16px 0 36px; /* Left padding for the icon */
+  border: 1px solid #F0F0F0; /* Light Grey */
+  border-radius: 9999px; /* Fully rounded */
+  font-size: 14px;
+  outline: none;
+  background-color: #FFFFFF; /* White */
+  color: #000000; /* Black */
+}
+
+.search-input-sidebar::placeholder {
+  color: #A9A9A9; /* Dark Grey */
+}
+
+.search-input-sidebar:focus {
+  border-color: #4B0082; /* Violet */
+  box-shadow: 0 0 0 1px rgba(75, 0, 130, 0.2);
+}
+
+/* Menu styling */
+.menu-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-section {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #A9A9A9; /* Dark Grey */
+  font-weight: normal;
+}
+
+.menu-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.menu-item {
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: row; /* Ensure horizontal layout */
+  align-items: center;
+  flex-wrap: nowrap; /* Prevent wrapping to new line */
+  cursor: pointer;
+  color: #000000; /* Black */
+  transition: background-color 0.2s, color 0.2s;
+  border-left: 3px solid transparent;
+  height: 40px; /* Fixed height for consistent sizing */
+  width: 100%; /* Ensure full width of container */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.menu-item:hover {
+  background-color: #F0F0F0; /* Light Grey */
+}
+
+.menu-item.active {
+  color: #4B0082; /* Violet */
+  border-left: 5px solid #4B0082; /* Violet */
+  background-color: rgba(75, 0, 130, 0.05);
+  font-weight: 500;
+}
+
+/* Make the icon violet when active */
+.menu-item.active .item-icon {
+  color: #4B0082; /* Violet */
+}
+
+/* Icon alignment fix */
+.item-icon {
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative; /* Add position relative */
+  top: 4px; /* Slight adjustment to align with text */
+}
+
+.item-text {
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1; /* Allow text to take remaining space */
+  display: inline-flex; /* Changed to inline-flex for better alignment */
+  align-items: center; /* Center text vertically */
+  line-height: normal; /* Let the alignment be handled by flex */
+}

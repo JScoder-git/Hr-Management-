@@ -1,0 +1,259 @@
+.dashboard-container {
+  padding: 2rem;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: #1e40af;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-message {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.welcome-message h2 {
+  font-size: 1.5rem;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.welcome-message p {
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.employee-icon {
+  background-color: #dbeafe;
+  color: #3b82f6;
+}
+
+.candidate-icon {
+  background-color: #f3e8ff;
+  color: #9333ea;
+}
+
+.leave-icon {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.attendance-icon {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-content h3 {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 0.25rem 0;
+}
+
+.stat-content p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.stat-content a {
+  font-size: 0.875rem;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.stat-content a:hover {
+  text-decoration: underline;
+}
+
+/* Charts */
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.chart-card h3 {
+  font-size: 1rem;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+}
+
+.chart-wrapper {
+  height: 300px;
+  position: relative;
+}
+
+.pie-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 250px;
+}
+
+/* Activities */
+.activities-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.activities-section h3 {
+  font-size: 1rem;
+  color: #111827;
+  margin: 0 0 1.5rem 0;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.candidate-icon {
+  background-color: #f3e8ff;
+  color: #9333ea;
+}
+
+.leave-icon {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.activity-header h4 {
+  font-size: 0.9375rem;
+  color: #111827;
+  margin: 0;
+}
+
+.activity-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.status-new,
+.status-pending {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-shortlisted {
+  background-color: #f3e8ff;
+  color: #9333ea;
+}
+
+.status-interview {
+  background-color: #dbeafe;
+  color: #3b82f6;
+}
+
+.status-selected,
+.status-approved {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status-rejected {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.activity-subtitle {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.activity-time {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0.25rem 0 0 0;
+}
