@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "framework": "node",
-  "buildCommand": "npm install && npm run build",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev",
-  "outputDirectory": ".",
   "builds": [
     {
       "src": "server.js",
@@ -17,25 +12,8 @@
       "dest": "/uploads/$1"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/server.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "PORT": "8080",
-    "MONGO_URI": "mongodb+srv://serrkasahil:21bcs2757@psquare.pkppvwi.mongodb.net/?retryWrites=true&w=majority&appName=Psquare",
-    "JWT_SECRET": "70ed976c0f2cbbe50a7e26f8f9b0182057a9a06021e1ab32cd5639ab1a4449fb",
-    "JWT_EXPIRE": "30d"
-  },
-  "functions": {
-    "server.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }
