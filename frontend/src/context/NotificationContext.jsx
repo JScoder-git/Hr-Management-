@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
-import { getApiUrl } from '../../utils/api';
+import { getApiUrl } from '../utils/api';
 
 export const NotificationContext = createContext();
 

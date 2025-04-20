@@ -15,6 +15,7 @@ import {
   Clock
 } from 'lucide-react';
 import '../../styles/CandidateDetail.css';
+import { getApiUrl } from '../../utils/api';
 
 const CandidateDetail = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const CandidateDetail = () => {
         setLoading(true);
         const token = localStorage.getItem('token');
 
-        const response = await axios.get(`http://localhost:5000/api/candidates/${id}`, {
+        const response = await axios.get(getApiUrl(`api/candidates/${id}`), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -54,7 +55,7 @@ const CandidateDetail = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.delete(`http://localhost:5000/api/candidates/${id}`, {
+      await axios.delete(getApiUrl(`api/candidates/${id}`), {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -70,7 +71,7 @@ const CandidateDetail = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await axios.get(`http://localhost:5000/api/candidates/${id}/resume`, {
+      const response = await axios.get(getApiUrl(`api/candidates/${id}/resume`), {
         headers: {
           Authorization: `Bearer ${token}`
         },

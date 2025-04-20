@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import '../../styles/LeaveDetail.css';
+import { getApiUrl } from '../../utils/api';
 
 const LeaveDetail = () => {
   const { id } = useParams();
@@ -19,12 +20,12 @@ const LeaveDetail = () => {
     const fetchLeave = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/leaves/${id}`, {
+        const response = await axios.get(getApiUrl(`api/leaves/${id}`), {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
-        
+
         setLeave(response.data.data);
         setComment(response.data.data.comment || '');
         setLoading(false);
@@ -40,7 +41,7 @@ const LeaveDetail = () => {
   const handleStatusUpdate = async (status) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`http://localhost:5000/api/leaves/${id}`, 
+      const response = await axios.put(getApiUrl(`api/leaves/${id}`),
         { status, comment },
         {
           headers: {
@@ -48,7 +49,7 @@ const LeaveDetail = () => {
           }
         }
       );
-      
+
       setLeave(response.data.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Error updating leave status');
@@ -58,13 +59,13 @@ const LeaveDetail = () => {
   const downloadAttachment = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/leaves/${id}/attachment`, {
+      const response = await axios.get(getApiUrl(`api/leaves/${id}/attachment`), {
         headers: {
           Authorization: `Bearer ${token}`
         },
         responseType: 'blob'
       });
-      
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -115,7 +116,7 @@ const LeaveDetail = () => {
           <i className="fas fa-arrow-left"></i> Back to List
         </Link>
       </div>
-      
+
       <div className="detail-section">
         <h2>Employee Information</h2>
         <div className="detail-grid">
@@ -133,7 +134,7 @@ const LeaveDetail = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="detail-section">
         <h2>Leave Details</h2>
         <div className="detail-grid">
@@ -167,7 +168,7 @@ const LeaveDetail = () => {
           )}
         </div>
       </div>
-      
+
       <div className="detail-section">
         <h2>Review Information</h2>
         <div className="detail-grid">
@@ -191,7 +192,7 @@ const LeaveDetail = () => {
           )}
         </div>
       </div>
-      
+
       {isAdmin && leave.status === 'Pending' && (
         <div className="detail-section">
           <h2>Admin Actions</h2>
@@ -207,14 +208,14 @@ const LeaveDetail = () => {
               ></textarea>
             </div>
             <div className="action-buttons">
-              <button 
-                onClick={() => handleStatusUpdate('Approved')} 
+              <button
+                onClick={() => handleStatusUpdate('Approved')}
                 className="approve-button"
               >
                 <i className="fas fa-check"></i> Approve
               </button>
-              <button 
-                onClick={() => handleStatusUpdate('Rejected')} 
+              <button
+                onClick={() => handleStatusUpdate('Rejected')}
                 className="reject-button"
               >
                 <i className="fas fa-times"></i> Reject
@@ -223,7 +224,7 @@ const LeaveDetail = () => {
           </div>
         </div>
       )}
-      
+
       {leave.comment && (
         <div className="detail-section">
           <h2>Comment</h2>

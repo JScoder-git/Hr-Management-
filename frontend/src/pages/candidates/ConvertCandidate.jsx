@@ -22,7 +22,7 @@ const ConvertCandidate = () => {
     const fetchCandidate = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/candidates/${id}`, {
+        const response = await axios.get(getApiUrl(`api/candidates/${id}`), {
           headers: {
             Authorization: `Bearer ${token}`
           }

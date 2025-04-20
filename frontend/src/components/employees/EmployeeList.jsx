@@ -10,14 +10,14 @@ import defaultAvatar from './empicon/1.jpg'; // Import the default avatar image
 const formatPhoneNumber = (phoneNumberString) => {
   // Strip all non-numeric characters
   const cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-  
+
   // Check if the input is of correct length
   const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-  
+
   if (match) {
     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
   }
-  
+
   // Return the original if it doesn't match the pattern
   return phoneNumberString;
 };
@@ -64,7 +64,7 @@ const EmployeeList = () => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5000/api/employees/${id}`, {
+        await axios.delete(getApiUrl(`api/employees/${id}`), {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,9 +83,9 @@ const EmployeeList = () => {
         // Check if the click is outside the action menu and not on the button that opened it
         const activeButtonRef = menuButtonRefs.current[actionMenuOpen];
         const clickedOnButton = activeButtonRef && activeButtonRef.contains(event.target);
-        
-        if (!clickedOnButton && 
-            actionMenuRef.current && 
+
+        if (!clickedOnButton &&
+            actionMenuRef.current &&
             !actionMenuRef.current.contains(event.target)) {
           setActionMenuOpen(null);
         }

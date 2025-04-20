@@ -217,7 +217,7 @@ const LeaveModal = ({ isOpen, onClose, onSuccess }) => {
       try {
         console.log('Sending leave request with JSON');
         console.log('Final request data:', JSON.stringify(requestData));
-        response = await axios.post('getApiUrl('api/leaves')', requestData, {
+        response = await axios.post(getApiUrl('api/leaves'), requestData, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -238,7 +238,7 @@ const LeaveModal = ({ isOpen, onClose, onSuccess }) => {
           try {
             console.log('Trying to fetch employee with ID:', formData.employeeId);
             // Try to fetch the employee again to get a valid ID
-            const employeeResponse = await axios.get(`http://localhost:5000/api/employees/${formData.employeeId}`, {
+            const employeeResponse = await axios.get(getApiUrl(`api/employees/${formData.employeeId}`), {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -250,7 +250,7 @@ const LeaveModal = ({ isOpen, onClose, onSuccess }) => {
               requestData.employee = employeeResponse.data.data._id;
 
               // Try the request again with the fixed ID
-              response = await axios.post('getApiUrl('api/leaves')', requestData, {
+              response = await axios.post(getApiUrl('api/leaves'), requestData, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                   'Content-Type': 'application/json'

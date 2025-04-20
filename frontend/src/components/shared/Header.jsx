@@ -7,6 +7,7 @@ import LogoutModal from './LogoutModal';
 import IconComponent from '../common/IconComponent';
 import { COLORS } from '../../styles/constants';
 import '../../styles/Header.css';
+import { getApiUrl } from '../../utils/api';
 
 const Header = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -78,10 +79,10 @@ const Header = () => {
 
   const getProfileImageUrl = () => {
     if (currentUser?.profilePicture) {
-      return `http://localhost:5000/api/profile/picture/${currentUser.profilePicture}`;
+      return getApiUrl(`api/profile/picture/${currentUser.profilePicture}`);
     }
 
-    return `http://localhost:5000/api/profile/picture/default-avatar.jpg`;
+    return getApiUrl('api/profile/picture/default-avatar.jpg');
   };
 
   return (
@@ -121,7 +122,7 @@ const Header = () => {
                 alt="Profile"
                 className="user-avatar"
               />
-              
+
             </div>
 
             <div className={`user-dropdown ${showUserDropdown ? 'show' : ''}`}>
@@ -138,7 +139,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-          
+
         </div>
       </header>
 
