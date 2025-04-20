@@ -142,21 +142,21 @@ const Login = () => {
   // Define slides content for cleaner code
   const slides = [
     {
-      image: "/img/logo.jpeg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Office",
       title: "Welcome to Psquare HRMS",
       description: "Streamlined HR management for modern enterprises",
       subtext: "Manage all your HR operations from a single, intuitive dashboard"
     },
     {
-      image: "/img/prabhSir.jpg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Team",
       title: "Employee Management",
       description: "Seamless onboarding and employee lifecycle management",
       subtext: "From hiring to retirement, manage every step of the employee journey"
     },
     {
-      image: "/img/armaansir.jpeg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Analytics",
       title: "Analytics Dashboard",
       description: "Data-driven HR decisions at your fingertips",
@@ -169,7 +169,7 @@ const Login = () => {
       <div className="auth-card">
         <div className="auth-logo">
           <div className="logo-box">
-            <img src="/img/Logo.jpeg" alt="Logo" className="logo-image" />
+            <img src="https://www.imghippo.com/i/ZV3656KXU.jpeg" alt="Logo" className="logo-image" />
           </div>
         </div>
 

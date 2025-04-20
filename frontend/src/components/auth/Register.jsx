@@ -25,14 +25,14 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
-  
+
   const [formErrors, setFormErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, currentUser, error, setError } = useContext(AuthContext);
   const navigate = useNavigate();
-  
+
   // Carousel state
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -41,16 +41,16 @@ const Register = () => {
   // Function to change slides with transition control
   const changeSlide = (slideIndex) => {
     if (isTransitioning || slideIndex === currentSlide) return;
-    
+
     setIsTransitioning(true);
     setCurrentSlide(slideIndex);
-    
+
     // Reset auto-rotation timer when manually changing slides
     if (autoRotateRef.current) {
       clearInterval(autoRotateRef.current);
       setupAutoRotation();
     }
-    
+
     // Allow next transition after animation completes
     setTimeout(() => {
       setIsTransitioning(false);
@@ -69,7 +69,7 @@ const Register = () => {
 
   useEffect(() => {
     setupAutoRotation();
-    
+
     return () => {
       if (autoRotateRef.current) {
         clearInterval(autoRotateRef.current);
@@ -81,40 +81,40 @@ const Register = () => {
   if (currentUser) {
     return <Navigate to="/dashboard" />;
   }
-  
+
   const validateForm = () => {
     const errors = {};
-    
+
     if (!formData.fullName.trim()) {
       errors.fullName = 'Full name is required';
     }
-    
+
     if (!formData.email) {
       errors.email = 'Email is required';
     } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
       errors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formData.password) {
       errors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
-    
+
     return errors;
   };
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
+
     // Clear error message when user types
     if (error) setError(null);
-    
+
     // Clear field-specific errors when typing
     if (formErrors[name]) {
       setFormErrors({
@@ -123,33 +123,33 @@ const Register = () => {
       });
     }
   };
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  
+
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate form
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Remove confirmPassword before sending to API
     const { confirmPassword, ...registerData } = formData;
-    
+
     try {
       const success = await register(registerData);
-      
+
       if (success) {
         navigate('/dashboard');
       }
@@ -159,46 +159,46 @@ const Register = () => {
       setIsSubmitting(false);
     }
   };
-  
+
   // Define slides content for cleaner code - same as login
   const slides = [
     {
-      image: "/img/logo.jpeg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Office",
       title: "Welcome to Psquare HRMS",
       description: "Streamlined HR management for modern enterprises",
       subtext: "Manage all your HR operations from a single, intuitive dashboard"
     },
     {
-      image: "/img/prabhSir.jpg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Team",
       title: "Employee Management",
       description: "Seamless onboarding & employee lifecycle management",
       subtext: "From hiring to retirement, manage every step of the employee journey"
     },
     {
-      image: "/img/armaansir.jpeg",
+      image: "https://www.imghippo.com/i/ZV3656KXU.jpeg",
       alt: "Psquare Analytics",
       title: "Analytics Dashboard",
       description: "Data-driven HR decisions at your fingertips",
       subtext: "Visualize key metrics to optimize your workforce management"
     }
   ];
-  
+
   return (
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-logo">
           <div className="logo-box">
-            <img src="/img/Logo.jpeg" alt="Logo" className="logo-image" />
+            <img src="https://www.imghippo.com/i/ZV3656KXU.jpeg" alt="Logo" className="logo-image" />
           </div>
         </div>
-        
+
         <div className="auth-content">
           <div className="auth-image-container">
             <div className="carousel-container">
-              <div 
-                className="carousel-slides" 
+              <div
+                className="carousel-slides"
                 style={{ transform: `translateX(-${currentSlide * 33.333}%)` }}
               >
                 {slides.map((slide, index) => (
@@ -212,10 +212,10 @@ const Register = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="dots">
                 {[0, 1, 2].map((index) => (
-                  <span 
+                  <span
                     key={`dot-${index}`}
                     className={`dot ${currentSlide === index ? 'active' : ''}`}
                     onClick={() => changeSlide(index)}
@@ -226,12 +226,12 @@ const Register = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="auth-form-container">
             <h2>Create an Account</h2>
-            
+
             {error && <div className="auth-error">{error}</div>}
-            
+
             <form className="auth-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="fullName">Full Name*</label>
@@ -246,7 +246,7 @@ const Register = () => {
                 />
                 {formErrors.fullName && <div className="error-message">{formErrors.fullName}</div>}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="email">Email Address*</label>
                 <input
@@ -260,7 +260,7 @@ const Register = () => {
                 />
                 {formErrors.email && <div className="error-message">{formErrors.email}</div>}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="password">Password*</label>
                 <div className="password-input-container">
@@ -273,8 +273,8 @@ const Register = () => {
                     onChange={handleChange}
                     className={formErrors.password ? 'error' : ''}
                   />
-                  <span 
-                    className="password-toggle" 
+                  <span
+                    className="password-toggle"
                     onClick={togglePasswordVisibility}
                     role="button"
                     aria-label={showPassword ? "Hide password" : "Show password"}
@@ -284,7 +284,7 @@ const Register = () => {
                 </div>
                 {formErrors.password && <div className="error-message">{formErrors.password}</div>}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="confirmPassword">Confirm Password*</label>
                 <div className="password-input-container">
@@ -297,8 +297,8 @@ const Register = () => {
                     onChange={handleChange}
                     className={formErrors.confirmPassword ? 'error' : ''}
                   />
-                  <span 
-                    className="password-toggle" 
+                  <span
+                    className="password-toggle"
                     onClick={toggleConfirmPasswordVisibility}
                     role="button"
                     aria-label={showConfirmPassword ? "Hide password" : "Show password"}
@@ -308,12 +308,12 @@ const Register = () => {
                 </div>
                 {formErrors.confirmPassword && <div className="error-message">{formErrors.confirmPassword}</div>}
               </div>
-              
+
               <button type="submit" className="auth-button" disabled={isSubmitting}>
                 {isSubmitting ? 'Creating Account...' : 'Create Account'}
               </button>
             </form>
-            
+
             <div className="auth-footer">
               Already have an account? <Link to="/login" className="login-link">Sign in here</Link>
             </div>
