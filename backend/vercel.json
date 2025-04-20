@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "server-with-auth.js",
+      "src": "server-full.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server-with-auth.js"
+      "dest": "/server-full.js"
     }
   ],
   "env": {
