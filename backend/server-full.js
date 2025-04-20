@@ -239,18 +239,31 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findById(decoded.id);
 
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          message: 'User not found'
+        });
+      }
+
+      // Ensure user object is properly set
       req.user = {
-        ...user.toObject(),
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
         role: decoded.role || user.role || 'user'
       };
+
       next();
     } catch (err) {
+      console.error('Auth error:', err);
       return res.status(401).json({
         success: false,
         message: 'Not authorized to access this route'
       });
     }
   } catch (err) {
+    console.error('Server error in auth middleware:', err);
     res.status(500).json({
       success: false,
       message: 'Server Error'
@@ -274,10 +287,10 @@ app.post('/api/auth/register', async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
     const user = await User.create({ fullName, email, password });
-    
+
     // Generate token
     const token = user.getSignedJwtToken();
-    
+
     res.status(201).json({
       success: true,
       token,
@@ -304,7 +317,7 @@ app.post('/api/auth/login', async (req, res) => {
         message: 'Please provide an email and password'
       });
     }
-    
+
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(401).json({
@@ -312,7 +325,7 @@ app.post('/api/auth/login', async (req, res) => {
         message: 'Invalid credentials'
       });
     }
-    
+
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
       return res.status(401).json({
@@ -320,10 +333,10 @@ app.post('/api/auth/login', async (req, res) => {
         message: 'Invalid credentials'
       });
     }
-    
+
     // Generate token
     const token = user.getSignedJwtToken();
-    
+
     res.status(200).json({
       success: true,
       token,
@@ -376,14 +389,14 @@ app.get('/api/employees', protect, async (req, res) => {
 app.get('/api/employees/:id', protect, async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id);
-    
+
     if (!employee) {
       return res.status(404).json({
         success: false,
         message: 'Employee not found'
       });
     }
-    
+
     res.status(200).json({
       success: true,
       data: employee
@@ -402,14 +415,14 @@ app.post('/api/employees', protect, async (req, res) => {
     if (req.user) {
       req.body.user = req.user.id;
     }
-    
+
     // For Vercel, we'll use a placeholder for profile picture
     if (req.file) {
       req.body.profile = 'placeholder-profile.jpg';
     }
-    
+
     const employee = await Employee.create(req.body);
-    
+
     res.status(201).json({
       success: true,
       data: employee
@@ -425,24 +438,24 @@ app.post('/api/employees', protect, async (req, res) => {
 app.put('/api/employees/:id', protect, async (req, res) => {
   try {
     let employee = await Employee.findById(req.params.id);
-    
+
     if (!employee) {
       return res.status(404).json({
         success: false,
         message: 'Employee not found'
       });
     }
-    
+
     // For Vercel, we'll use a placeholder for profile picture
     if (req.file) {
       req.body.profile = 'placeholder-profile.jpg';
     }
-    
+
     employee = await Employee.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     });
-    
+
     res.status(200).json({
       success: true,
       data: employee
@@ -458,16 +471,16 @@ app.put('/api/employees/:id', protect, async (req, res) => {
 app.delete('/api/employees/:id', protect, async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id);
-    
+
     if (!employee) {
       return res.status(404).json({
         success: false,
         message: 'Employee not found'
       });
     }
-    
+
     await employee.deleteOne();
-    
+
     res.status(200).json({
       success: true,
       data: {}
@@ -500,14 +513,14 @@ app.get('/api/candidates', protect, async (req, res) => {
 app.get('/api/candidates/:id', protect, async (req, res) => {
   try {
     const candidate = await Candidate.findById(req.params.id);
-    
+
     if (!candidate) {
       return res.status(404).json({
         success: false,
         message: 'Candidate not found'
       });
     }
-    
+
     res.status(200).json({
       success: true,
       data: candidate
@@ -523,22 +536,32 @@ app.get('/api/candidates/:id', protect, async (req, res) => {
 app.post('/api/candidates', protect, async (req, res) => {
   try {
     // Add user to req.body if authenticated
-    if (req.user) {
+    if (req.user && req.user.id) {
       req.body.user = req.user.id;
+    } else {
+      // If user is not available, provide a default value or return an error
+      return res.status(401).json({
+        success: false,
+        message: 'User authentication required'
+      });
     }
-    
+
     // For Vercel, we'll use a placeholder for resume
     if (req.file) {
       req.body.resume = 'placeholder-resume.pdf';
+    } else {
+      // If no resume is provided, set a default value
+      req.body.resume = 'default-resume.pdf';
     }
-    
+
     const candidate = await Candidate.create(req.body);
-    
+
     res.status(201).json({
       success: true,
       data: candidate
     });
   } catch (error) {
+    console.error('Error creating candidate:', error);
     res.status(400).json({
       success: false,
       message: error.message
@@ -549,24 +572,24 @@ app.post('/api/candidates', protect, async (req, res) => {
 app.put('/api/candidates/:id', protect, async (req, res) => {
   try {
     let candidate = await Candidate.findById(req.params.id);
-    
+
     if (!candidate) {
       return res.status(404).json({
         success: false,
         message: 'Candidate not found'
       });
     }
-    
+
     // For Vercel, we'll use a placeholder for resume
     if (req.file) {
       req.body.resume = 'placeholder-resume.pdf';
     }
-    
+
     candidate = await Candidate.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     });
-    
+
     res.status(200).json({
       success: true,
       data: candidate
@@ -582,16 +605,16 @@ app.put('/api/candidates/:id', protect, async (req, res) => {
 app.delete('/api/candidates/:id', protect, async (req, res) => {
   try {
     const candidate = await Candidate.findById(req.params.id);
-    
+
     if (!candidate) {
       return res.status(404).json({
         success: false,
         message: 'Candidate not found'
       });
     }
-    
+
     await candidate.deleteOne();
-    
+
     res.status(200).json({
       success: true,
       data: {}
@@ -607,21 +630,21 @@ app.delete('/api/candidates/:id', protect, async (req, res) => {
 app.get('/api/candidates/:id/resume', protect, async (req, res) => {
   try {
     const candidate = await Candidate.findById(req.params.id);
-    
+
     if (!candidate) {
       return res.status(404).json({
         success: false,
         message: 'Candidate not found'
       });
     }
-    
+
     if (!candidate.resume) {
       return res.status(404).json({
         success: false,
         message: 'Resume not found'
       });
     }
-    
+
     // For Vercel, we'll return a success message instead of the actual file
     res.status(200).json({
       success: true,
@@ -640,14 +663,14 @@ app.get('/api/candidates/:id/resume', protect, async (req, res) => {
 app.get('/api/profile', protect, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    
+
     if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found'
       });
     }
-    
+
     res.status(200).json({
       success: true,
       data: user
@@ -666,7 +689,7 @@ app.put('/api/profile', protect, async (req, res) => {
     if (req.file) {
       req.body.profilePicture = 'placeholder-profile.jpg';
     }
-    
+
     const user = await User.findByIdAndUpdate(
       req.user.id,
       req.body,
@@ -675,7 +698,7 @@ app.put('/api/profile', protect, async (req, res) => {
         runValidators: true
       }
     ).select('-password');
-    
+
     res.status(200).json({
       success: true,
       data: user
@@ -691,7 +714,7 @@ app.put('/api/profile', protect, async (req, res) => {
 app.put('/api/profile/password', protect, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
-    
+
     // Validate request
     if (!currentPassword || !newPassword) {
       return res.status(400).json({
@@ -699,7 +722,7 @@ app.put('/api/profile/password', protect, async (req, res) => {
         message: 'Please provide current and new password'
       });
     }
-    
+
     // Check if new password meets requirements
     if (newPassword.length < 6) {
       return res.status(400).json({
@@ -707,31 +730,31 @@ app.put('/api/profile/password', protect, async (req, res) => {
         message: 'New password must be at least 6 characters'
       });
     }
-    
+
     // Get user with password
     const user = await User.findById(req.user.id).select('+password');
-    
+
     if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found'
       });
     }
-    
+
     // Check if current password matches
     const isMatch = await user.matchPassword(currentPassword);
-    
+
     if (!isMatch) {
       return res.status(401).json({
         success: false,
         message: 'Current password is incorrect'
       });
     }
-    
+
     // Update password
     user.password = newPassword;
     await user.save();
-    
+
     res.status(200).json({
       success: true,
       message: 'Password updated successfully'
@@ -748,7 +771,7 @@ app.get('/api/profile/picture/:filename', (req, res) => {
   try {
     // For Vercel, we'll return a placeholder image URL
     const defaultAvatarUrl = 'https://via.placeholder.com/150';
-    
+
     // Redirect to the placeholder image
     return res.redirect(defaultAvatarUrl);
   } catch (error) {
