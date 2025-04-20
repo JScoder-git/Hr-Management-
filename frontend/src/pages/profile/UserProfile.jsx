@@ -36,7 +36,7 @@ const UserProfile = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        const response = await axios.get('getApiUrl('api/profile')', {
+        const response = await axios.get(getApiUrl('api/profile'), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -114,7 +114,7 @@ const UserProfile = () => {
         formData.append('profile', profileData.profilePicture);
       }
 
-      const response = await axios.put('getApiUrl('api/profile')',
+      const response = await axios.put(getApiUrl('api/profile'),
         formData,
         {
           headers: {
@@ -150,7 +150,7 @@ const UserProfile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put('getApiUrl('api/profile/password')',
+      await axios.put(getApiUrl('api/profile/password'),
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword
@@ -194,10 +194,10 @@ const UserProfile = () => {
     }
 
     if (currentUser?.profilePicture) {
-      return `http://localhost:5000/api/profile/picture/${currentUser.profilePicture}`;
+      return getApiUrl(`api/profile/picture/${currentUser.profilePicture}`);
     }
 
-    return `http://localhost:5000/api/profile/picture/default-avatar.jpg`;
+    return getApiUrl('api/profile/picture/default-avatar.jpg');
   };
 
   return (

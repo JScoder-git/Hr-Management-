@@ -67,14 +67,14 @@ const ConvertCandidate = () => {
       };
 
 
-      const response = await axios.post('getApiUrl('api/employees')', employeeData, {
+      const response = await axios.post(getApiUrl('api/employees'), employeeData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
 
-      await axios.put(`http://localhost:5000/api/candidates/${id}`,
+      await axios.put(getApiUrl(`api/candidates/${id}`),
         { status: 'Selected' },
         {
           headers: {

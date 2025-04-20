@@ -27,7 +27,7 @@ const CandidateList = () => {
       const token = localStorage.getItem('token');
 
       // Build the API URL with query parameters for filtering
-      let url = 'getApiUrl('api/candidates')';
+      let url = getApiUrl('api/candidates');
       const params = new URLSearchParams();
 
       if (statusFilter) params.append('status', statusFilter);
@@ -107,7 +107,7 @@ const CandidateList = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
 
-      const response = await axios.delete(`http://localhost:5000/api/candidates/${id}`, {
+      const response = await axios.delete(getApiUrl(`api/candidates/${id}`), {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -134,7 +134,7 @@ const CandidateList = () => {
       const token = localStorage.getItem('token');
 
       // Get candidate data
-      const candidateResponse = await axios.get(`http://localhost:5000/api/candidates/${id}`, {
+      const candidateResponse = await axios.get(getApiUrl(`api/candidates/${id}`), {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -155,7 +155,7 @@ const CandidateList = () => {
       };
 
       // Create new employee
-      await axios.post('getApiUrl('api/employees')', employeeData, {
+      await axios.post(getApiUrl('api/employees'), employeeData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -175,7 +175,7 @@ const CandidateList = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
 
-      const response = await axios.get(`http://localhost:5000/api/candidates/${id}/resume`, {
+      const response = await axios.get(getApiUrl(`api/candidates/${id}/resume`), {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -209,14 +209,14 @@ const CandidateList = () => {
   const formatPhoneNumber = (phoneNumber) => {
     // Remove all non-digit characters
     const cleaned = phoneNumber.replace(/\D/g, '');
-    
+
     // Check if the input is of correct length
     const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-    
+
     if (match) {
       return `(${match[1]}) ${match[2]}-${match[3]}`;
     }
-    
+
     // If input doesn't match pattern, return the original
     return phoneNumber;
   };
@@ -317,7 +317,7 @@ const CandidateList = () => {
                             try {
                               const newStatus = e.target.value;
                               const token = localStorage.getItem('token');
-                              await axios.put(`http://localhost:5000/api/candidates/${candidate._id}`,
+                              await axios.put(getApiUrl(`api/candidates/${candidate._id}`),
                                 { status: newStatus },
                                 {
                                   headers: {

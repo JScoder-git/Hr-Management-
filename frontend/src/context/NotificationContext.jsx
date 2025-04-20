@@ -22,7 +22,7 @@ export const NotificationProvider = ({ children }) => {
       try {
         setLoading(true);
         const token = localStorage.getItem('token');
-        const response = await axios.get('getApiUrl('api/notifications')', {
+        const response = await axios.get(getApiUrl('api/notifications'), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -52,7 +52,7 @@ export const NotificationProvider = ({ children }) => {
   const markAsRead = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/notifications/${id}/read`, {}, {
+      await axios.put(getApiUrl(`api/notifications/${id}/read`), {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -73,7 +73,7 @@ export const NotificationProvider = ({ children }) => {
   const markAllAsRead = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put('getApiUrl('api/notifications/read-all')', {}, {
+      await axios.put(getApiUrl('api/notifications/read-all'), {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -91,7 +91,7 @@ export const NotificationProvider = ({ children }) => {
   const deleteNotification = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/notifications/${id}`, {
+      await axios.delete(getApiUrl(`api/notifications/${id}`), {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -114,7 +114,7 @@ export const NotificationProvider = ({ children }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('getApiUrl('api/notifications')', {
+      const response = await axios.get(getApiUrl('api/notifications'), {
         headers: {
           Authorization: `Bearer ${token}`
         }

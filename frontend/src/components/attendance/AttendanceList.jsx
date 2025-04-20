@@ -36,14 +36,14 @@ const AttendanceList = () => {
         setLoading(true);
 
         // Fetch employees
-        const employeesResponse = await axios.get('getApiUrl('api/employees')', {
+        const employeesResponse = await axios.get(getApiUrl('api/employees'), {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
 
         // Fetch attendance for the selected date
-        const attendanceResponse = await axios.get(`http://localhost:5000/api/attendance?date=${selectedDate}`, {
+        const attendanceResponse = await axios.get(getApiUrl(`api/attendance?date=${selectedDate}`), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -140,14 +140,14 @@ const AttendanceList = () => {
 
         // If we already have an attendance record, update it
         if (employee.attendanceId) {
-          await axios.put(`http://localhost:5000/api/attendance/${employee.attendanceId}`, attendanceData, {
+          await axios.put(getApiUrl(`api/attendance/${employee.attendanceId}`), attendanceData, {
             headers: {
               Authorization: `Bearer ${token}`
             }
           });
         } else {
           // Otherwise create a new record
-          await axios.post('getApiUrl('api/attendance')', attendanceData, {
+          await axios.post(getApiUrl('api/attendance'), attendanceData, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -155,7 +155,7 @@ const AttendanceList = () => {
         }
       } else if (employee.attendanceId) {
         // If status is 'Absent' and there's no task but we have an attendance record, delete it
-        await axios.delete(`http://localhost:5000/api/attendance/${employee.attendanceId}`, {
+        await axios.delete(getApiUrl(`api/attendance/${employee.attendanceId}`), {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -195,14 +195,14 @@ const AttendanceList = () => {
 
       // If we already have an attendance record, update it
       if (employee.attendanceId) {
-        await axios.put(`http://localhost:5000/api/attendance/${employee.attendanceId}`, attendanceData, {
+        await axios.put(getApiUrl(`api/attendance/${employee.attendanceId}`), attendanceData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
       } else {
         // Otherwise create a new record
-        await axios.post('getApiUrl('api/attendance')', attendanceData, {
+        await axios.post(getApiUrl('api/attendance'), attendanceData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -287,7 +287,7 @@ const AttendanceList = () => {
             </select>
           </div>
 
-         
+
         </div>
 
         <div className="search-box">

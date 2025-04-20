@@ -36,7 +36,7 @@ const EnhancedLeaveList = () => {
     const handleClickOutside = () => {
       setActiveDocMenu(null);
     };
-    
+
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
@@ -48,7 +48,7 @@ const EnhancedLeaveList = () => {
     try {
       const token = localStorage.getItem('token');
       console.log('Using token for fetch:', token ? 'Token exists' : 'No token');
-      let url = 'getApiUrl('api/leaves')';
+      let url = getApiUrl('api/leaves');
 
       if (statusFilter) {
         url = `${url}?status=${statusFilter}`;
@@ -95,11 +95,11 @@ const EnhancedLeaveList = () => {
       }
 
       // Update on the server with better error handling
-      console.log(`Sending request to: http://localhost:5000/api/leaves/${id}`);
+      console.log(`Sending request to: ${getApiUrl(`api/leaves/${id}`)}`);
       console.log(`With data: ${JSON.stringify({ status: newStatus })}`);
 
       const response = await axios.put(
-        `http://localhost:5000/api/leaves/${id}`,
+        getApiUrl(`api/leaves/${id}`),
         { status: newStatus },
         {
           headers: {
@@ -137,7 +137,7 @@ const EnhancedLeaveList = () => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     const year = String(date.getFullYear()).slice(-2);
-    
+
     return `${month}/${day}/${year}`;
   };
 
@@ -223,7 +223,7 @@ const EnhancedLeaveList = () => {
       <div className="leave-grid">
         {/* Left Section - Leave List */}
         <div className="leave-list-section">
-         
+
 
           <div className="applied-leaves-header">Applied Leaves</div>
 
@@ -249,7 +249,7 @@ const EnhancedLeaveList = () => {
                     <tr key={leave._id}>
                       <td>
                         <div className="employee-avatar">
-                          <img src={`http://localhost:5000/api/profile/picture/default-avatar.jpg`} alt={leave.employee?.fullName} />
+                          <img src={getApiUrl('api/profile/picture/default-avatar.jpg')} alt={leave.employee?.fullName} />
                         </div>
                       </td>
                       <td>
@@ -288,15 +288,15 @@ const EnhancedLeaveList = () => {
                           disabled={!leave.attachment}
                           title={leave.attachment ? "Document options" : "No document available"}
                         >
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            width="20" 
-                            height="20" 
-                            viewBox="0 0 24 24" 
-                            fill="none" 
-                            stroke="#4B0082" 
-                            strokeWidth="2" 
-                            strokeLinecap="round" 
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#4B0082"
+                            strokeWidth="2"
+                            strokeLinecap="round"
                             strokeLinejoin="round"
                           >
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -305,24 +305,24 @@ const EnhancedLeaveList = () => {
                             <line x1="16" y1="17" x2="8" y2="17"></line>
                             <polyline points="10 9 9 9 8 9"></polyline>
                           </svg>
-                          
+
                           {activeDocMenu === leave._id && leave.attachment && (
                             <div className="doc-menu">
-                              <a 
-                                href={`http://localhost:5000/api/leaves/documents/${leave.attachment}`}
+                              <a
+                                href={getApiUrl(`api/leaves/documents/${leave.attachment}`)}
                                 className="doc-menu-item"
                                 download
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <svg 
-                                  xmlns="http://www.w3.org/2000/svg" 
-                                  width="16" 
-                                  height="16" 
-                                  viewBox="0 0 24 24" 
-                                  fill="none" 
-                                  stroke="currentColor" 
-                                  strokeWidth="2" 
-                                  strokeLinecap="round" 
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
                                   strokeLinejoin="round"
                                 >
                                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
